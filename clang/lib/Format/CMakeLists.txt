@@ -16,10 +16,10 @@ add_clang_library(clangFormat
   UnwrappedLineParser.cpp
   UsingDeclarationsSorter.cpp
   WhitespaceManager.cpp
-
-  LINK_LIBS
-  clangBasic
-  clangLex
-  clangToolingCore
-  clangToolingInclusions
+  shim.cpp
+  lexer.cpp
+  Confusables.cpp
+  Lexer.cpp
   )
+
+target_include_directories(clangFormat PUBLIC /home/artyom/proj/formatter/swift/build/Ninja-DebugAssert/llvm-linux-x86_64/include /home/artyom/proj/formatter/swift/llvm-project/clang/include /home/artyom/proj/formatter/swift/swift/include /home/artyom/proj/formatter/swift/llvm-project/llvm/include)

@@ -55,6 +55,8 @@ FormatTokenLexer::FormatTokenLexer(
 }
 
 ArrayRef<FormatToken *> FormatTokenLexer::lex() {
+  // intercept flow
+
   assert(Tokens.empty());
   assert(FirstInLineIndex == 0);
   do {
