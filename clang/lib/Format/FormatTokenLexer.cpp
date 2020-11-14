@@ -22,6 +22,7 @@
 #include "Lexer.h"
 #include "swift/Basic/LangOptions.h"
 #include "shim.h"
+#include "swift/Basic/SourceManager.h"
 
 #include <fstream>
 #include <string>
@@ -1045,22 +1046,30 @@ FormatToken *FormatTokenLexer::getNextToken() {
 void FormatTokenLexer::readRawToken(FormatToken &Tok) {
   // intercept here
   // Lex->LexFromRawLexer(Tok.Tok);
-  swift::LangOptions langOpts;
-  std::ifstream ifs("test/main.swift");
-  std::string contents(
+  //swift::LangOptions langOpts;
+  //std::ifstream ifs("test/main.swift");
+  //std::string contents(
+  /*
 		       (std::istreambuf_iterator<char>(ifs)),
 		       (std::istreambuf_iterator<char>())
 		       );
-  std::cout << contents << std::endl;
-  swift::LexerMode lexMode;
+  */
+  swift::SourceLoc SL;
+  auto CRM = swift::CommentRetentionMode::None;
   swift::SourceManager SM;
+  auto foo =  swift::Lexer::getTokenAtLocation(SM, SL, CRM);
+  //std::cout << contents << std::endl;
+  // swift::LexerMode lexMode;
+  // swift::SourceManager SM;
+  /*
   swift::Lexer L(langOpts, SM, contents, lexMode);
   swift::Token Token;
   swift::ParsedTrivia LeadingTrivia, TrailingTrivia;
   L.lex(Token, LeadingTrivia, TrailingTrivia);
   Tok.Tok.setKind(shim(Token.getKind()));
-  Tok.TokenText = Token.getText();
   // or Token.getRawText();
+  Tok.TokenText = Token.getText();
+  */
 
   // For formatting, treat unterminated string literals like normal string
   // literals.
