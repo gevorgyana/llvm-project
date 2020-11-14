@@ -19,6 +19,14 @@
 #include "clang/Format/Format.h"
 #include "llvm/Support/Regex.h"
 
+#include "Lexer.h"
+#include "swift/Basic/LangOptions.h"
+#include "shim.h"
+
+#include <fstream>
+#include <string>
+#include <iostream>
+
 namespace clang {
 namespace format {
 
@@ -55,8 +63,6 @@ FormatTokenLexer::FormatTokenLexer(
 }
 
 ArrayRef<FormatToken *> FormatTokenLexer::lex() {
-  // intercept flow
-
   assert(Tokens.empty());
   assert(FirstInLineIndex == 0);
   do {
@@ -1032,11 +1038,30 @@ FormatToken *FormatTokenLexer::getNextToken() {
 
   return FormatTok;
 }
-
+  // clang lexer . lex -> Token
+  // ---
+  // swift Lexer . lex -> swift::Token
+  // shim(.)
 void FormatTokenLexer::readRawToken(FormatToken &Tok) {
-  Lex->LexFromRawLexer(Tok.Tok);
-  Tok.TokenText = StringRef(SourceMgr.getCharacterData(Tok.Tok.getLocation()),
-                            Tok.Tok.getLength());
+  // intercept here
+  // Lex->LexFromRawLexer(Tok.Tok);
+  swift::LangOptions langOpts;
+  std::ifstream ifs("test/main.swift");
+  std::string contents(
+		       (std::istreambuf_iterator<char>(ifs)),
+		       (std::istreambuf_iterator<char>())
+		       );
+  std::cout << contents << std::endl;
+  swift::LexerMode lexMode;
+  swift::SourceManager SM;
+  swift::Lexer L(langOpts, SM, contents, lexMode);
+  swift::Token Token;
+  swift::ParsedTrivia LeadingTrivia, TrailingTrivia;
+  L.lex(Token, LeadingTrivia, TrailingTrivia);
+  Tok.Tok.setKind(shim(Token.getKind()));
+  Tok.TokenText = Token.getText();
+  // or Token.getRawText();
+
   // For formatting, treat unterminated string literals like normal string
   // literals.
   if (Tok.is(tok::unknown)) {

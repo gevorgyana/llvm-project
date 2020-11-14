@@ -6,8 +6,6 @@
 #include <string>
 #include <iostream>
 
-
-
 int main9() {
   swift::LangOptions langOpts;
   std::ifstream ifs("test/main.swift");
