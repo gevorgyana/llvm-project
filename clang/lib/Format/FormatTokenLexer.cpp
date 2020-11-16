@@ -20,7 +20,7 @@
 #include "llvm/Support/Regex.h"
 
 #include "Lexer.h"
-#include "swift/Basic/LangOptions.h"
+// #include "swift/Basic/LangOptions.h"
 #include "shim.h"
 #include "swift/Basic/SourceManager.h"
 
