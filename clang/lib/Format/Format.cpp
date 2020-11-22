@@ -46,7 +46,7 @@
 #include "Lexer.h"
 
 #include <iostream>
-#include "lexer.cpp"
+#include "lexer.h"
 
 #define DEBUG_TYPE "format-formatter"
 

@@ -47,6 +47,8 @@
 #include <tuple>
 #include <utility>
 
+#include "../Format/lexer.h"
+
 #include <iostream>
 
 using namespace clang;
@@ -3206,9 +3208,13 @@ LexNextToken:
   Result.clearFlag(Token::NeedsCleaning);
   Result.setIdentifierInfo(nullptr);
 
+  /// CUSTOM HACKS BEGIN
+
   // CurPtr - Cache BufferPtr in an automatic variable.
   const char *CurPtr = BufferPtr;
   std::cout << "Hi, CurPtr is " << CurPtr << std::endl;
+
+  /// CUSTOM HACKS END
 
   // Small amounts of horizontal whitespace is very common between tokens.
   if ((*CurPtr == ' ') || (*CurPtr == '\t')) {
@@ -3231,9 +3237,12 @@ LexNextToken:
 
   unsigned SizeTmp, SizeTmp2;   // Temporaries for use in cases below.
 
+  tok::TokenKind Kind;
+  tok::TokenKind SavedKindFromSwiftShim;
+  get_me_some_swift_lexeme(CurPtr, SavedKindFromSwiftShim);
+
   // Read a character, advancing over it.
   char Char = getAndAdvanceChar(CurPtr, Result);
-  tok::TokenKind Kind;
 
   switch (Char) {
   case 0:  // Null.
