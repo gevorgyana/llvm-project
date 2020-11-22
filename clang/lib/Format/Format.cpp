@@ -2404,6 +2404,9 @@ reformat(const FormatStyle &Style, StringRef Code,
 
 
   std::cout << "Alright I have been hicjacked" << std::endl;
+  // This is done for testing purpose. It is absolutely not needed here,
+  // It does not bare any logic inside. The logic is more deeply integrated with
+  // Clang itself.
   intercept_main();
   std::cout << "Alright I am back" << std::endl;
 

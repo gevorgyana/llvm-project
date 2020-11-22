@@ -18,8 +18,8 @@ int intercept_main() {
   swift::SourceManager SM;
 
   // Use the capabilities of the SourceManager now
-  const char* source = "func foo() {}";
-  SM.addNewSourceBuffer(llvm::MemoryBuffer::getMemBuffer(source, "foobar"));
+  // const char* source = "func foo() {}";
+  // SM.addNewSourceBuffer(llvm::MemoryBuffer::getMemBuffer(source, "foobar"));
 
   swift::Lexer L(
       langOpts,

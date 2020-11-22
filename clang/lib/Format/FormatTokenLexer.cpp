@@ -846,14 +846,7 @@ FormatToken *FormatTokenLexer::getNextToken() {
 }
 
 void FormatTokenLexer::readRawToken(FormatToken &Tok) {
-  // need to take stuff from lexer.cpp here
-  /*
-    Token Lexer::getTokenAtLocation(const SourceManager &SM, SourceLoc Loc,
-				  CommentRetentionMode CRM);
-  */
-
-  // Need to get a raw token here
-
+  // Need to get a raw token here -- this is done inside this call
   Lex->LexFromRawLexer(Tok.Tok);
 
   Tok.TokenText = StringRef(SourceMgr.getCharacterData(Tok.Tok.getLocation()),

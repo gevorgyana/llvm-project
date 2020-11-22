@@ -47,6 +47,8 @@
 #include <tuple>
 #include <utility>
 
+#include <iostream>
+
 using namespace clang;
 
 //===----------------------------------------------------------------------===//
@@ -3206,6 +3208,7 @@ LexNextToken:
 
   // CurPtr - Cache BufferPtr in an automatic variable.
   const char *CurPtr = BufferPtr;
+  std::cout << "Hi, CurPtr is " << CurPtr << std::endl;
 
   // Small amounts of horizontal whitespace is very common between tokens.
   if ((*CurPtr == ' ') || (*CurPtr == '\t')) {
