@@ -846,7 +846,16 @@ FormatToken *FormatTokenLexer::getNextToken() {
 }
 
 void FormatTokenLexer::readRawToken(FormatToken &Tok) {
+  // need to take stuff from lexer.cpp here
+  /*
+    Token Lexer::getTokenAtLocation(const SourceManager &SM, SourceLoc Loc,
+				  CommentRetentionMode CRM);
+  */
+
+  // Need to get a raw token here
+
   Lex->LexFromRawLexer(Tok.Tok);
+
   Tok.TokenText = StringRef(SourceMgr.getCharacterData(Tok.Tok.getLocation()),
                             Tok.Tok.getLength());
   // For formatting, treat unterminated string literals like normal string

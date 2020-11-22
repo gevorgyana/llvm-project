@@ -16,6 +16,11 @@ int intercept_main() {
   std::cout << contents << std::endl;
   swift::LexerMode lexMode;
   swift::SourceManager SM;
+
+  // Use the capabilities of the SourceManager now
+  const char* source = "func foo() {}";
+  SM.addNewSourceBuffer(llvm::MemoryBuffer::getMemBuffer(source, "foobar"));
+
   swift::Lexer L(
       langOpts,
       SM,
