@@ -15,6 +15,11 @@ add_clang_library(clangFormat
   UnwrappedLineParser.cpp
   UsingDeclarationsSorter.cpp
   WhitespaceManager.cpp
+  Lexer.cpp
+  Confusables.cpp
+  lexer.cpp
+  shim.cpp
+  main.cpp
 
   LINK_LIBS
   clangBasic

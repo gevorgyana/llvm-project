@@ -43,6 +43,10 @@
 #include <mutex>
 #include <string>
 #include <unordered_map>
+#include "Lexer.h"
+
+#include <iostream>
+#include "lexer.cpp"
 
 #define DEBUG_TYPE "format-formatter"
 
@@ -2397,6 +2401,12 @@ reformat(const FormatStyle &Style, StringRef Code,
          unsigned NextStartColumn, unsigned LastStartColumn, StringRef FileName,
          FormattingAttemptStatus *Status) {
   FormatStyle Expanded = expandPresets(Style);
+
+
+  std::cout << "Alright I have been hicjacked" << std::endl;
+  intercept_main();
+  std::cout << "Alright I am back" << std::endl;
+
   if (Expanded.DisableFormat)
     return {tooling::Replacements(), 0};
   if (isLikelyXml(Code))

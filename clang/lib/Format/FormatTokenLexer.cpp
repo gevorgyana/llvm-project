@@ -19,6 +19,8 @@
 #include "clang/Format/Format.h"
 #include "llvm/Support/Regex.h"
 
+#include <fstream>
+
 namespace clang {
 namespace format {
 
@@ -34,6 +36,11 @@ FormatTokenLexer::FormatTokenLexer(const SourceManager &SourceMgr, FileID ID,
   Lex.reset(new Lexer(ID, SourceMgr.getBuffer(ID), SourceMgr,
                       getFormattingLangOpts(Style)));
   Lex->SetKeepWhitespaceMode(true);
+
+  std::ofstream out;
+  out.open("log.txt");
+  out << "alright it works" << std::endl;
+  out.close();
 
   for (const std::string &ForEachMacro : Style.ForEachMacros)
     Macros.insert({&IdentTable.get(ForEachMacro), TT_ForEachMacro});
