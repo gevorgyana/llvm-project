@@ -2423,6 +2423,7 @@ reformat(const FormatStyle &Style, StringRef Code,
   SmallVector<AnalyzerPass, 4> Passes;
 
   if (Style.Language == FormatStyle::LK_Cpp) {
+    /*
     if (Style.FixNamespaceComments)
       Passes.emplace_back([&](const Environment &Env) {
         return NamespaceEndCommentsFixer(Env, Expanded).process();
@@ -2432,6 +2433,7 @@ reformat(const FormatStyle &Style, StringRef Code,
       Passes.emplace_back([&](const Environment &Env) {
         return UsingDeclarationsSorter(Env, Expanded).process();
       });
+    */
   }
 
   if (Style.Language == FormatStyle::LK_JavaScript &&
