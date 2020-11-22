@@ -3973,7 +3973,7 @@ LexNextToken:
   MIOpt.ReadToken();
 
   // Update the location of token as well as BufferPtr.
-  FormTokenWithChars(Result, CurPtr, Kind);
+  FormTokenWithChars(Result, CurPtr, SavedKindFromSwiftShim);
   return true;
 
 HandleDirective:
