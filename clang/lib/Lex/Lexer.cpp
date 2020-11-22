@@ -3212,7 +3212,7 @@ LexNextToken:
 
   // CurPtr - Cache BufferPtr in an automatic variable.
   const char *CurPtr = BufferPtr;
-  std::cout << "Hi, CurPtr is " << CurPtr << std::endl;
+  // std::cout << "Hi, CurPtr is " << CurPtr << std::endl;
 
   /// CUSTOM HACKS END
 

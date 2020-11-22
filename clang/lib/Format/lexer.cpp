@@ -34,6 +34,7 @@ bool get_me_some_swift_lexeme(const char* source, clang::tok::TokenKind& Result)
 }
 
 int intercept_main() {
+  /*
   swift::LangOptions langOpts;
   std::ifstream ifs("test/main.swift");
   std::string contents(
@@ -60,5 +61,6 @@ int intercept_main() {
     L.lex(Tok, LeadingTrivia, TrailingTrivia);
     auto in_clang_terms = shim(Tok.getKind());
   } while (Tok.getKind() != swift::tok::eof);
+  */
   return 0;
 }
