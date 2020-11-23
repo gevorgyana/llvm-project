@@ -138,7 +138,7 @@ static char const* SWIFT_TOKEN_STRING_REPR[] = {
 #undef TOKEN
 };
 
-clang::tok::TokenKind shim(swift::tok SwiftTok) {
+__attribute__((noinline))clang::tok::TokenKind shim(swift::tok SwiftTok) {
   // First of all, we should convert the numeric value that we have to
   // a string. For that, we have defined the swift token in string form
   auto SwiftTokStr =  SWIFT_TOKEN_STRING_REPR[static_cast<unsigned short>(SwiftTok)];
