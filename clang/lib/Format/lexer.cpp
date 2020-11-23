@@ -12,7 +12,7 @@
 bool get_me_some_swift_lexeme(const char* source, clang::tok::TokenKind& Result) {
   swift::LangOptions langOpts;
   std::string contents(source);
-  std::cout << contents << std::endl;
+  // std::cout << contents << std::endl;
   swift::LexerMode lexMode;
   swift::SourceManager SM;
   swift::Lexer L(
