@@ -35,7 +35,7 @@ enum TokenKind : unsigned short {
 // part of the tokens is already in clang
 #include "clang/Basic/TokenKinds.def"
   // NUM_TOKENS
-  //#undef TOK
+  // #undef TOK
   // And those that are specific to Swift have to be translated
   // verbatium
   // What is marked with CTO is for compile time only
