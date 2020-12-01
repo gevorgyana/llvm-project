@@ -7,6 +7,6 @@
 #include <string>
 #include <iostream>
 
-bool get_me_some_swift_lexeme(const char* source, clang::tok::TokenKind& Result);
+size_t get_me_some_swift_lexeme(const char* source, clang::tok::TokenKind& Result);
 
 int intercept_main();

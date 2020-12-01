@@ -3232,7 +3232,11 @@ bool Lexer::LexTokenInternal(Token &Result, bool TokAtPhysicalStartOfLine) {
   tok::TokenKind SavedKindFromSwiftShim;
   // this should run always - the Swift lexer is capable of doing everything it needs,
   // hopefully
-  get_me_some_swift_lexeme(CurPtr, SavedKindFromSwiftShim);
+
+  auto tokenLength = get_me_some_swift_lexeme(CurPtr, SavedKindFromSwiftShim);
+  for (auto i = 0; i < tokenLength; i++) {
+    ++CurPtr;
+  }
 
   // Notify MIOpt that we read a non-whitespace/non-comment token.
   MIOpt.ReadToken();

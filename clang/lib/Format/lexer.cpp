@@ -9,10 +9,11 @@
 #include <string>
 #include <iostream>
 
-__attribute__((noinline))bool get_me_some_swift_lexeme(const char* source, clang::tok::TokenKind& Result) {
+__attribute__((noinline)) size_t get_me_some_swift_lexeme(const char* source, clang::tok::TokenKind& Result) {
   swift::LangOptions langOpts;
   std::string contents(source);
   // std::cout << contents << std::endl;
+  // TOOD should I initialize it? It works without it, so maybe not.
   swift::LexerMode lexMode;
   swift::SourceManager SM;
   swift::Lexer L(
@@ -26,11 +27,7 @@ __attribute__((noinline))bool get_me_some_swift_lexeme(const char* source, clang
   L.lex(Tok, LeadingTrivia, TrailingTrivia);
   auto in_clang_terms = shim(Tok.getKind());
   Result = in_clang_terms;
-  if (Tok.getKind() != swift::tok::eof) {
-    return true;
-  } else {
-    return false;
-  }
+  return Tok.getText().size();
 }
 
 int intercept_main() {
