@@ -3211,9 +3211,9 @@ bool Lexer::LexTokenInternal(Token &Result, bool TokAtPhysicalStartOfLine) {
   const char *CurPtr = BufferPtr;
 
   // Small amounts of horizontal whitespace is very common between tokens.
-  if ((*CurPtr == ' ') || (*CurPtr == '\t')) {
+  if ((*CurPtr == ' ') || (*CurPtr == '\t') || (*CurPtr == '\n')) {
     ++CurPtr;
-    while ((*CurPtr == ' ') || (*CurPtr == '\t'))
+    while ((*CurPtr == ' ') || (*CurPtr == '\t') || (*CurPtr == '\n'))
       ++CurPtr;
 
     // If we are keeping whitespace and other tokens, just return what we just
